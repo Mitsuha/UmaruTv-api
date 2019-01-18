@@ -1,21 +1,56 @@
-# Lumen PHP Framework
+# Lvideo 是一个由 Laravel 编写的 视频点播网站
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+百度脑图：http://naotu.baidu.com/file/3f778897c959fea255916cb9ff06849c?token=b751d03c3f69d24e
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## 数据库
 
-## Official Documentation
+User
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+- id
+- name
+- password
+- role
 
-## Security Vulnerabilities
+Anime
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+- id
+- name
+- watch
+- collection
+- danmaku
+- release_time
+- introduction
+- season_id
+- season_name
 
-## License
+Video
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- id
+- name
+- info
+- coin
+
+Resource
+- id
+- video_id
+- resource
+- type
+- resolution
+- ranking
+
+Danmaku
+
+- id
+- user_id
+- video_id
+- start_time
+- color
+- other
+
+Comment
+
+- id
+- user_id
+- video_id
+- content
+- like
