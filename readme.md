@@ -1,23 +1,23 @@
 # Lvideo 是一个由 Laravel 编写的 视频点播网站
 
-百度脑图：http://naotu.baidu.com/file/3f778897c959fea255916cb9ff06849c?token=b751d03c3f69d24e
+程序设计：[百度脑图][http://naotu.baidu.com/file/3f778897c959fea255916cb9ff06849c?token=b751d03c3f69d24e]
 
-## All apis
+## All api
 
 |Api|简介|
 |---|---|
-|'/login'|登录|
-|'/register'|注册|
-|'/user/self'|已经登录用户信息]|
-|'/user/{id}/info'|获取指定 id 的用户信息|
-|'/animes/'|作品查询|
-|'/animes/timeline'|季度新番时间轴|
-|'/animes/{id}/info'|动漫详情|
-|'/animes/{id}/episodes'|查询该动漫的其他季度|
-|'/animes/{id}/video'|动漫的视频详情|
-|'/animes/video/{id}/comment'|动漫视频的评论|
-|'/comment/create'|发表评论|
-|'/comment/delete'|删除评论|
+|/login|登录|
+|/register|注册|
+|/user/self|已经登录用户信息]|
+|/user/{id}/info|获取指定 id 的用户信息|
+|/animes/|作品查询|
+|/animes/timeline|季度新番时间轴|
+|/animes/{id}/info|动漫详情|
+|/animes/{id}/episodes|查询该动漫的其他季度|
+|/animes/{id}/video|动漫的视频详情|
+|/animes/video/{id}/comment|动漫视频的评论|
+|/comment/create|发表评论|
+|/comment/delete|删除评论|
 
 
 ## 数据库
