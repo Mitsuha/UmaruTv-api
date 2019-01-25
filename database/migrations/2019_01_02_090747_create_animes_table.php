@@ -24,7 +24,8 @@ class CreateAnimesTable extends Migration
             $table->timestamp('release_time')->comment('发行时间');
             $table->unsignedInteger('episodes')->comment('有几集');
             $table->string('status',10);
-            $table->unsignedInteger('season_id')->comment('多季情况下是第一季的 id')->nullable()->index();
+            $table->unsignedInteger('update_time')->default(0)->comment('番剧更新时间');
+            $table->unsignedInteger('season_id')->comment('多季情况下是第一季的 id')->default(0)->index();
             $table->string('season_name')->comment('季度名称，如第二季、pv、剧场版');
             $table->timestamps();
         });

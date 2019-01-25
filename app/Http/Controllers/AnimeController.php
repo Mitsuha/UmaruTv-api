@@ -37,4 +37,18 @@ class AnimeController extends Controller
     {
         # code...
     }
+
+    public function timeline()
+    {
+        $animes = Anime::where('status','updating')->orWhere('status','stop')->get();
+        $tmp = array();
+        foreach (range(1, 7) as $key) {
+            $tmp[$key] = array_filter($animes->toArray(), function($anime) use ($key){
+                if ($anime['update_time'] == $key) {
+                    return true;
+                }
+            });
+        }
+        return $tmp;
+    }
 }

@@ -20,22 +20,9 @@ $factory->define(App\Models\Anime::class, function (Faker $faker) {
 
     $status = [
         'end',
-        'updating.1',
-        'updating.2',
-        'updating.3',
-        'updating.4',
-        'updating.5',
-        'updating.6',
-        'updating.7',
-        'stop.1',
-        'stop.2',
-        'stop.3',
-        'stop.4',
-        'stop.5',
-        'stop.6',
-        'stop.7',
+        'stop',
+        'updating',
     ];
-
 	//randomNumber() generates numbers of fixed width. To generate numbers between two boundaries, use numberBetween() instead.
 	$time = $faker->dateTimeThisYear;
     return [
@@ -49,6 +36,7 @@ $factory->define(App\Models\Anime::class, function (Faker $faker) {
         'episodes'=> 12,
         'status'=>$faker->randomElement($status),
         'season_name'=>$faker->word,
+        'update_time'=>rand()%7,
         'created_at'=>$time,
         'updated_at'=>$time
     ];

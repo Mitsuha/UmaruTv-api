@@ -12,7 +12,9 @@
 */
 
 $router->get('/', function () use ($router) {
-
+	$anime = App\Models\Anime::where('status','end')->get();
+	// dd($anime);
+	return $anime->toArray();
 });
 
 $router->get('/login','Auth\LoginController@login');
@@ -20,6 +22,7 @@ $router->post('/register','Auth\RegisterController@register');
 $router->get('/user/self',['middleware'=>'auth','uses'=>'UserController@self']);
 $router->get('/user/{id}/info',['middleware'=>'auth','uses'=>'UserController@show']);
 $router->get('/animes/','AnimeController@index');
+$router->get('/animes/timeline','AnimeController@timeline');
 $router->get('/animes/{id}/info','AnimeController@show');
 $router->get('/animes/{id}/episodes','AnimeController@episodes');
 $router->get('/animes/{id}/video','VideoController@resource');
