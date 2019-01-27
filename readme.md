@@ -2,13 +2,20 @@
 
 程序设计：[百度脑图](http://naotu.baidu.com/file/3f778897c959fea255916cb9ff06849c?token=b751d03c3f69d24e)
 
+## 预料之内的漏洞
+- 处理用户会话时使用了并不熟悉的 JWT，因为 JWT 的不可控性导致了如下可能会被利用的 BUG
+ - 在用户注销时只是单纯的在客户端删除了登录凭证，因此在第三方盗取令牌后注销并不能保证此次回话作废
+ - 续签时多并发会出现签署多张令牌的情况
+ - 重放攻击
+
+
 ## All api
 
 |Api|请求方式|简介|
 |---|---|---|
 |/login|POST|登录|
 |/register|POST|注册|
-|/user/self|GET|已经登录用户信息]|
+|/user/self|GET|已经登录用户信息|
 |/user/{id}/info|GET|获取指定 id 的用户信息|
 |/animes/|GET|作品查询|
 |/animes/timeline|GET|季度新番时间轴|

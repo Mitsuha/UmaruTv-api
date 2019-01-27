@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Anime;
 use App\Models\Video;
-use Illuminate\Http\Request;
 
 class AnimeController extends Controller
 {

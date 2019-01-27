@@ -25,9 +25,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->email='yblick@example.net';
-        $request->password = 'secret';
-
         $user = User::where('email',$request->email)->first();
         
         if (null == $user){
@@ -35,27 +32,28 @@ class LoginController extends Controller
         }
 
         if (Hash::check($request->password, $user->password) ) {
-            return $this->createJwt($user);
+            return $this->issuingJwt($user);
         }
 
         throw new UnauthorizedHttpException('Wrong user name or password', '用户名或密码错误');
     }
 
-    public function createJwt($user){
-        $jwt = JWT::encode([
-            "iss" => "http://example.org",
-//            "aud" => "http://example.com",
+    static function createJwt($user){
+        return JWT::encode([
+            "iss" => env('APP_URL'),
             "iat" => time(),
-//            "nbf" => time(),
             'exp' => strtotime('+1 hours'),
             'nam' => $user->name,
             'mai' => $user->email,
             'uid' => $user->id,
         ], env('APP_KEY'));
+    }
 
+    static function issuingJwt($user)
+    {
         return response([
             'status'=>'success',
-            'jwt'=>$jwt
+            'jwt'=>static::createJwt($user);
         ],200);
     }
 }

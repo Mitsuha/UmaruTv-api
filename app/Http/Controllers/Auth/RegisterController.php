@@ -5,7 +5,7 @@ namespace App\Http\Auth\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ResisterController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,6 +19,12 @@ class ResisterController extends Controller
 
     public function register(Request $request)
     {
-        //
+        $this->vaildate($request, [
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password'=>'required'
+        ])
+        $user = User::create($request->toArray());
+        return LoginController::issuingJwt($user);
     }
 }

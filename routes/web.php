@@ -11,7 +11,8 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+$router->get('/', function (Illuminate\Http\Request $request) use ($router) {
+	return response($request->cookie('token'))->cookie(cookie('token','aa'));
 	$anime = App\Models\Anime::where('status','end')->get();
 	// dd($anime);
 	return $anime->toArray();
