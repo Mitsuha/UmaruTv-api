@@ -15,12 +15,22 @@ class ResponseMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // try{
-            // $response = $next($request);
-        // }catch (Exception $e){
-            // echo $e->getMessage();
-        // }
+        
+        // $authorization = empty($request->headers->get('Authorization'))
+        //     ? $request->input('Authorization') : $request->headers->get('Authorization');
 
+        // // dd($authorization);
+        // if ($authorization) {
+        //     try{
+        //         if (($jwt = JWT::decode($authorization, env('APP_KEY'), ['HS256']))) {
+        //             if (time() < $jwt->exp) {
+        //                 return User::find($jwt->uid);
+        //             }
+        //         }
+        //     }catch(\Exception $e){
+
+        //     }
+        // }
         return $next($request);
     }
 }

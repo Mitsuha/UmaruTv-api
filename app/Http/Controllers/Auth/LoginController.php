@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
@@ -25,6 +26,10 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        if (\Auth::user()) {
+            throw new AccessDeniedHttpException('重复登录');
+        }
+        
         $user = User::where('email',$request->email)->first();
         
         if (null == $user){
@@ -51,9 +56,11 @@ class LoginController extends Controller
 
     static function issuingJwt($user)
     {
+        $jwt = static::createJwt($user);
         return response([
+            'code'=>1,
             'status'=>'success',
-            'jwt'=>static::createJwt($user);
-        ],200);
+            'jwt'=>$jwt,
+        ],200)->header('Authorization',$jwt)->header('Cache-Control','no-store');
     }
 }

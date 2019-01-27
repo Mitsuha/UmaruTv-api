@@ -18,7 +18,7 @@ $router->get('/', function (Illuminate\Http\Request $request) use ($router) {
 	return $anime->toArray();
 });
 
-$router->get('/login','Auth\LoginController@login');
+$router->post('/login','Auth\LoginController@login');
 $router->post('/register','Auth\RegisterController@register');
 $router->get('/user/self',['middleware'=>'auth','uses'=>'UserController@self']);
 $router->get('/user/{id}/info',['middleware'=>'auth','uses'=>'UserController@show']);

@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 // use Illuminate\Notifications\Notifiable;
+// use Illuminate\Auth\Authenticatable;
+// use Illuminate\Contracts\Auth\Authenticatable;
 // use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Model
