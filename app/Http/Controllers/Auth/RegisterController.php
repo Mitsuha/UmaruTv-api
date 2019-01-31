@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Auth\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -19,11 +20,11 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $this->vaildate($request, [
+        $this->validate($request, [
             'name'=>'required',
             'email'=>'required|email|unique:users',
             'password'=>'required'
-        ])
+        ]);
         $user = User::create($request->toArray());
         return LoginController::issuingJwt($user);
     }

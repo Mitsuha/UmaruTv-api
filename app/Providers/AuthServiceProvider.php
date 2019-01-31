@@ -38,25 +38,11 @@ class AuthServiceProvider extends ServiceProvider
         // });
         
         $this->app['auth']->viaRequest('api', function($request){
-            // dd('ServiceProvider');
-            if (env('APP_ENV') == 'local'){
-                // return User::find(1);
+            if (env('APP_ENV') == 'local') {
+                return App\Models\User::find(1);
             }
-
-            $authorization = empty($request->headers->get('Authorization'))
-                ? $request->input('Authorization') : $request->headers->get('Authorization');
-
-            // if ($request->headers->get('Authorization') || $request->input('Authorization')) {
-            if ($authorization) {
-                try{
-                    if (($jwt = JWT::decode($authorization, env('APP_KEY'), ['HS256']))) {
-                        if (time() < $jwt->exp) {
-                            return User::find($jwt->uid);
-                        }
-                    }
-                }catch(\Exception $e){
-
-                }
+            if (isset($request->__loginUser)) {
+                return $request->__loginUser;
             }
         });
     }

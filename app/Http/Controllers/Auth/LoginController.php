@@ -47,7 +47,7 @@ class LoginController extends Controller
         return JWT::encode([
             "iss" => env('APP_URL'),
             "iat" => time(),
-            'exp' => strtotime('+1 hours'),
+            'exp' => strtotime('+1 min'),
             'nam' => $user->name,
             'mai' => $user->email,
             'uid' => $user->id,
