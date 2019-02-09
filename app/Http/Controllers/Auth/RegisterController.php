@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class RegisterController extends Controller
 {
@@ -25,7 +28,15 @@ class RegisterController extends Controller
             'email'=>'required|email|unique:users',
             'password'=>'required'
         ]);
-        $user = User::create($request->toArray());
-        return LoginController::issuingJwt($user);
+
+        if (\Auth::check()) {
+            throw new AccessDeniedHttpException();
+        }
+        $data = $request->toArray();
+        $data['password'] = Hash::make($data['password']);
+
+        $user = User::create($data);
+        $auth = app(AuthController::class);
+        return $auth->login($request);
     }
 }

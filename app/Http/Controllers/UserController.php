@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\User;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
 
 class UserController extends Controller
 {

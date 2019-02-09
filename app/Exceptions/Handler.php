@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if(true && $this->captureException($exception)){
+        if($this->captureException($exception)){
             return $this->returnJsonError($exception);
         }
 
@@ -70,16 +70,24 @@ class Handler extends ExceptionHandler
             if (method_exists($exception, 'getStatusCode')) {
                 $response_code = $exception->getStatusCode();
             }else{
-                $response_code = 404;
+                $response_code = $this->getDefaultStatusCode();
             }
         }catch(Exception $e){
             Log::error($e->getMessage());
+        }
+        if (empty($message)) {
+            $message = class_basename($exception);
         }
 
         return response([
             'code'=>$code,
             'message'=>$message,
         ],$response_code);
+    }
+
+    public function getDefaultStatusCode()
+    {
+        return 404;
     }
 
     public function ModelNotFoundToJson($exception)

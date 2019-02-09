@@ -38,12 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         // });
         
         $this->app['auth']->viaRequest('api', function($request){
-            if (env('APP_ENV') == 'local') {
-                return \App\Models\User::find(1);
-            }
-            if (isset($request->__loginUser)) {
-                return $request->__loginUser;
-            }
+            return User::where('email',$request->input('email'))->first();
         });
     }
 }

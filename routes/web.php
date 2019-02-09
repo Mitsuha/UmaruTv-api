@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,17 +13,24 @@
 |
 */
 
-$router->get('/', function (Illuminate\Http\Request $request) use ($router) {
-	return response($request->cookie('token'))->cookie(cookie('token','aa'));
+$router->get('/', function (Request $request) use ($router) {
+	new App\Models\User();
+	// return response($request->cookie('token'))->cookie(cookie('token','aa'));
 	$anime = App\Models\Anime::where('status','end')->get();
 	// dd($anime);
 	return $anime->toArray();
 });
 
-$router->post('/login','Auth\LoginController@login');
-$router->post('/register','Auth\RegisterController@register');
-$router->get('/user/self',['middleware'=>'auth','uses'=>'UserController@self']);
-$router->get('/user/{id}/info',['middleware'=>'auth','uses'=>'UserController@show']);
+
+$router->group(['prefix'=>'auth','namespace'=>'Auth'],function() use($router){
+	$router->post('login', 'AuthController@login');
+	$router->post('logout', 'AuthController@logout');
+	$router->post('refresh', 'AuthController@refresh');
+	$router->post('register','RegisterController@register');
+});
+
+$router->get('/user/me',['middleware'=>'auth:api','uses'=>'UserController@self']);
+$router->get('/user/{id}/info',['middleware'=>'auth:api','uses'=>'UserController@show']);
 $router->get('/animes/','AnimeController@index');
 $router->get('/animes/timeline','AnimeController@timeline');
 $router->get('/animes/{id}/info','AnimeController@show');
