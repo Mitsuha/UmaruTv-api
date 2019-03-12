@@ -17,8 +17,14 @@ class VideoController extends Controller
         //
     }
 
-    public function resource($id,Request, $request)
+    public function resource($id, Request $request)
     {
-        
+        $video = Video::with('resource')->find($id);
+
+        if ($request->input('info')==true) {
+            return $video;
+        }
+
+        return $video->resource;
     }
 }

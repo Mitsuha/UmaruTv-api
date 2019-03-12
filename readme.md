@@ -17,9 +17,6 @@
 |/register|POST|注册|name,email,password|code,status,token|
 |/user/me|GET|已经登录用户信息|NULL||
 |/user/{id}/info|GET|获取指定 id 的用户信息|id||
-|/animes/|GET|作品查询|NULL|.|
-|/animes/timeline|GET|季度新番时间轴|NULL||
-|/animes/{id}/info|GET|动漫详情|id||
 |/animes/{id}/episodes|GET|查询该动漫的其他季度|id||
 |/animes/{id}/video|GET|动漫的视频详情|id||
 |/animes/video/{id}/comment|GET|动漫视频的评论|id||
@@ -31,9 +28,9 @@
 请求方式：`GET`  
 请求参数：  
 
-|参数|传参方式|可选值|
+|参数|传参方式|必须|可选值|
 |---|---|---|
-|id|地址栏|[1-9]|
+|id|URL|是|[1-9]|
 
 返回参数详解：  
 
@@ -55,9 +52,9 @@
 请求方式：`GET`  
 请求参数：  
 
-|参数|必须|可选值|
+|参数|传参方式|必须|可选值|
 |---|---|---|
-|with|否|`resource` 带此参数会返回资源数据|
+|with|GET|否|`resource` 带此参数会返回资源数据|
 
 返回参数详解：  
 
@@ -68,6 +65,16 @@
 |info|当前集简介|
 |coin|硬币|
 |resource.*|资源详情|
+
+### 获取制定集的资源
+请求地址：`/animes/video/{id}/resource`  
+请求方式：`GET`  
+请求参数：
+
+|参数|传参方式|必须|可选值|
+|---|---|---|---|
+|id|URL|是|[0-9]|
+|info|GET|否|`true` 带此参数会连同该集信息一并返回|
 
 ### 获取所有动漫
 请求地址：`/animes/`  
@@ -92,9 +99,8 @@
 
 |关键词|解释|
 |---|---|
-|第一维数组|星期几|
-|第二维数组|更新的番剧数据|
-
+|一维数组|星期几|
+|二维数组|更新的番剧数据|
 
 
 ## 数据库
