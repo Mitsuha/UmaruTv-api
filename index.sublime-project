@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/home/ricardo/Document/Code/www/magic-mirror"
 		}
 	]
 }
