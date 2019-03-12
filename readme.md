@@ -2,7 +2,7 @@
 
 程序设计：[百度脑图](http://naotu.baidu.com/file/3f778897c959fea255916cb9ff06849c?token=b751d03c3f69d24e)
 
-# todo list
+## todo list
 - [ ] 登录注册
 - [ ] 搜索
 - [ ] 索引
@@ -10,6 +10,12 @@
 - [ ] 弹幕
 
 ## All api
+[获取指定动漫详情](#获取指定动漫详情)
+[获取动漫的内容详情](#获取动漫的内容详情)
+[获取指定集的资源](#获取指定集的资源)
+[获取所有动漫](#获取所有动漫)
+[新番时间表](#新番时间表)
+
 
 |Api|请求方式|简介|请求|返回（json）|
 |---|---|---|---|---|
@@ -17,8 +23,6 @@
 |/register|POST|注册|name,email,password|code,status,token|
 |/user/me|GET|已经登录用户信息|NULL||
 |/user/{id}/info|GET|获取指定 id 的用户信息|id||
-|/animes/{id}/episodes|GET|查询该动漫的其他季度|id||
-|/animes/{id}/video|GET|动漫的视频详情|id||
 |/animes/video/{id}/comment|GET|动漫视频的评论|id||
 |/comment/create|POST|发表评论|||
 |/comment/delete|DELETE|删除评论|||
@@ -66,7 +70,7 @@
 |coin|硬币|
 |resource.*|资源详情|
 
-### 获取制定集的资源
+### 获取指定集的资源
 请求地址：`/animes/video/{id}/resource`  
 请求方式：`GET`  
 请求参数：
