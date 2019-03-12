@@ -34,8 +34,7 @@ $router->get('/user/{id}/info',['middleware'=>'auth:api','uses'=>'UserController
 $router->get('/animes/','AnimeController@index');
 $router->get('/animes/timeline','AnimeController@timeline');
 $router->get('/animes/{id}/info','AnimeController@show');
-$router->get('/animes/{id}/episodes','AnimeController@episodes');
-$router->get('/animes/{id}/video','VideoController@resource');
+$router->get('/animes/{id}/video','AnimeController@video');
 $router->get('/animes/video/{id}/comment','CommentController@show');
 $router->post('/comment/create','CommentController@create');
 $router->post('/comment/delete','CommentController@delete');

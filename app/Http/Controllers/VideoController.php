@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
@@ -16,24 +17,8 @@ class VideoController extends Controller
         //
     }
 
-    public function resource($id)
+    public function resource($id,Request, $request)
     {
-        $videos = Video::with('resource')->where('anime_id',$id)->get();
-        $filter_result = array();
-
-        foreach ($videos as $value) {
-            foreach ($value['resource'] as $resource) {
-                $value['resource'][] = array_except($resource,[
-                    'id',
-                    'video_id',
-                ]);
-            }
-            $filter_result[] = array_except($value,[
-                'id',
-                'anime_id',
-            ]);
-        }
-
-        return $filter_result;
+        
     }
 }

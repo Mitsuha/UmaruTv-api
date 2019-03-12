@@ -28,11 +28,28 @@ class AnimeController extends Controller
         return array_except(Anime::withVideo($request->has('withVideo'))->findOrFail($id),['id']);
     }
 
-    public function episodes($id)
+    public function video($id, Request $request)
     {
-        return Video::where('anime_id',$id)->get();
-    }
+        $with = $request->input('with') === 'resource' ? 'resource' : [];
+    
+        $videos = video::with($with)->where('anime_id',$id)->get();
+        // $filter_result = array();
 
+        // foreach ($videos as $value) {
+        //     foreach ($value['resource'] as $resource) {
+        //         $value['resource'][] = array_except($resource,[
+        //             'id',
+        //             'video_id',
+        //         ]);
+        //     }
+        //     $filter_result[] = array_except($value,[
+        //         'id',
+        //         'anime_id',
+        //     ]);
+        // }
+
+        return $videos;
+    }
     public function FunctionName($value='')
     {
         # code...
