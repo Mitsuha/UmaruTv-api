@@ -35,6 +35,7 @@ $router->get('/animes/','AnimeController@index');
 $router->get('/animes/timeline','AnimeController@timeline');
 $router->get('/animes/{id}/info','AnimeController@show');
 $router->get('/animes/{id}/video','AnimeController@video');
+$router->get('/animes/tags','AnimeController@tags');
 $router->get('/animes/video/{id}/resource','VideoController@resource');
 $router->get('/animes/video/{id}/comment','CommentController@show');
 $router->post('/comment/create','CommentController@create');

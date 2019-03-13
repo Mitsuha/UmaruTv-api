@@ -12,6 +12,11 @@ class Anime extends Model
     	return $this->hasMany(Video::class,'anime_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'anime_tags');
+    }
+
     public function scopeWithVideo($query, bool $with)
     {
     	if ($with) {

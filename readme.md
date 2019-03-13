@@ -10,22 +10,49 @@
 - [ ] 弹幕
 
 ## All api
+[登录](#登录)  
+[注册](#注册)  
 [获取指定动漫详情](#获取指定动漫详情)  
 [获取动漫的内容详情](#获取动漫的内容详情)  
 [获取指定集的资源](#获取指定集的资源)  
 [获取所有动漫](#获取所有动漫)  
 [新番时间表](#新番时间表)  
 
-
 |Api|请求方式|简介|请求|返回（json）|
 |---|---|---|---|---|
-|/login|POST|登录|email,password|code,status,token|
-|/register|POST|注册|name,email,password|code,status,token|
 |/user/me|GET|已经登录用户信息|NULL||
 |/user/{id}/info|GET|获取指定 id 的用户信息|id||
-|/animes/video/{id}/comment|GET|动漫视频的评论|id||
-|/comment/create|POST|发表评论|||
-|/comment/delete|DELETE|删除评论|||
+
+### 登录
+请求地址：`/login`    
+请求方式：`POST`  
+请求参数：
+
+|参数|传参方式|必须|可选值|
+|---|---|---|---|
+|email|POST|是|none|
+|password|POST|是|none|
+
+返回参数：
+
+|关键词|解释|
+|---|---|
+|code|状态|
+|status|状态|
+|token|令牌，请在 Header 中加入`Authorization`字段，值为`Bearer xxx.xxx.xxx`|
+
+### 注册
+请求地址：`/register`    
+请求方式：`POST`  
+请求参数：
+
+|参数|传参方式|必须|可选值|
+|---|---|---|---|
+|name|POST|是|none|
+|email|POST|是|none|
+|password|POST|是|none|
+
+返回参数： [同登录](#登录)
 
 ### 获取指定动漫详情
 请求地址：`/animes/{id}/info`  
@@ -33,8 +60,9 @@
 请求参数：  
 
 |参数|传参方式|必须|可选值|
-|---|---|---|
+|---|---|---|---|
 |id|URL|是|[1-9]|
+|withVideo|GET|否|`true`会返回动漫里的视频详情|
 
 返回参数：  
 
@@ -115,56 +143,30 @@
 |一维数组|星期几|
 |二维数组|更新的番剧数据|
 
+### 查询标签
+请求地址：`/animes/tags`  
+请求方式：`GET`  
+请求参数：
+
+|参数|传参方式|必须|可选值|
+|---|---|---|---|
+|type|GET|否|返回的 type 字段，可用于进行简单筛选|
+
+返回参数：
+
+|关键词|解释|
+|---|---|
+|name|标签名|
+|type|标签类型：`style`为风格标签，`local`为地区标签，`season`为季度标签|
+
 
 ## 数据库
-
-User
-
-- id
-- name
+- users
 - password
-- role
-
-Anime
-
-- id
-- name
-- watch
-- collection
-- danmaku
-- release_time
-- introduction
-- season_id
-- season_name
-
-Video
-
-- id
-- name
-- info
-- coin
-
-Resource
-- id
-- video_id
+- animes
+- videos
+- danmakus
+- comments
 - resource
-- type
-- resolution
-- ranking
-
-Danmaku
-
-- id
-- user_id
-- video_id
-- start_time
-- color
-- other
-
-Comment
-
-- id
-- user_id
-- video_id
-- content
-- like
+- tag
+- anime_tag

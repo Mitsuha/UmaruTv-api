@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
+use App\Models\Tag;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -20,12 +21,16 @@ class AnimeController extends Controller
 
     public function index(Request $request)
     {
-        return Anime::withVideo($request->has('withVideo'))->paginate(); 
+        // $with = $request->has('withVideo') ? ['video','tags'] : ['tags'];
+
+        return Anime::with([])->paginate(); 
     }
 
     public function show(Request $request, $id)
     {
-        return array_except(Anime::withVideo($request->has('withVideo'))->findOrFail($id),['id']);
+        $with = $request->has('withVideo') ? ['video','tags'] : ['tags'];
+
+        return array_except(Anime::with($with)->findOrFail($id),['id']);
     }
 
     public function video($id, Request $request)
@@ -50,11 +55,7 @@ class AnimeController extends Controller
 
         return $videos;
     }
-    public function FunctionName($value='')
-    {
-        # code...
-    }
-
+ 
     public function timeline()
     {
         $animes = Anime::where('status','updating')->orWhere('status','stop')->get();
@@ -67,5 +68,13 @@ class AnimeController extends Controller
             });
         }
         return $tmp;
+    }
+
+    public function tags(Request $request)
+    {
+        if ($request->has('type')) {
+            return Tag::where('type',$request->input('type'))->get();
+        }
+        return Tag::all();
     }
 }
