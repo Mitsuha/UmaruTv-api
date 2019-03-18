@@ -33,6 +33,8 @@ $router->get('/user/me',['middleware'=>'auth:api','uses'=>'UserController@self']
 $router->get('/user/{id}/info',['middleware'=>'auth:api','uses'=>'UserController@show']);
 $router->get('/animes/','AnimeController@index');
 $router->get('/animes/timeline','AnimeController@timeline');
+$router->get('/animes/recently-updated','AnimeController@recentlyUpdated');
+
 $router->get('/animes/{id}/info','AnimeController@show');
 $router->get('/animes/{id}/video','AnimeController@video');
 $router->get('/animes/tags','AnimeController@tags');

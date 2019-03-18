@@ -70,6 +70,15 @@ class AnimeController extends Controller
         return $tmp;
     }
 
+    public function recentlyUpdated()
+    {
+        $video = Video::select('anime_id')->orderBy('created_at','desc')->limit(20)->get()->toArray();
+        $video = array_slice(array_unique(array_column($video, 'anime_id')),0,10);
+        // $anime = Anime::select(['name','introduction','episodes'])->whereIn('id',$video)->get();
+        $anime = Anime::select(['name','episodes'])->whereIn('id',$video)->get();
+        return $anime;
+    }
+
     public function tags(Request $request)
     {
         if ($request->has('type')) {
