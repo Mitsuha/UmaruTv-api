@@ -23,7 +23,7 @@ class AnimeController extends Controller
     {
         // $with = $request->has('withVideo') ? ['video','tags'] : ['tags'];
 
-        return Anime::with([])->paginate(); 
+        return Anime::with([])->paginate($request->input('paginate')); 
     }
 
     public function show(Request $request, $id)
