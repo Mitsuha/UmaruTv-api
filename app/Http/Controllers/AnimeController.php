@@ -27,7 +27,7 @@ class AnimeController extends Controller
     }
 
     public function show(Request $request, $id)
-    {
+    {   
         $with = $request->has('withVideo') ? ['video','tags'] : ['tags'];
 
         return array_except(Anime::with($with)->findOrFail($id),['id']);
