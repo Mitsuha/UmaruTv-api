@@ -19,11 +19,27 @@ class AnimeController extends Controller
         // parent::__construct();
     }
 
+    public function split($str)
+    {
+        return array_filter(explode(',', $str), function($var)
+        {
+            return !empty($var);
+        });
+    }
+
     public function index(Request $request)
     {
-        // $with = $request->has('withVideo') ? ['video','tags'] : ['tags'];
+        $anime = new Anime();
 
-        return Anime::with([])->paginate($request->input('paginate')); 
+        if ($request->has('tag')) {
+            $ids = $this->split($request->input('tag'));
+
+            $anime = $anime->whereHas('tags',function($query) use ($ids){
+                $query->whereIn('tag_id',$ids);
+            });
+        }
+
+        return $anime->paginate($request->input('paginate')); 
     }
 
     public function show(Request $request, $id)
