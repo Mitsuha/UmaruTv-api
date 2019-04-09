@@ -41,5 +41,6 @@ $router->get('/animes/tags','TagController@tags');
 $router->get('/animes/index','AnimeController@index');
 $router->get('/animes/video/{id}/resource','VideoController@resource');
 $router->get('/animes/video/{id}/comment','CommentController@show');
+$router->get('/animes/video/danmaku/','DanmakuController@index');
 $router->post('/comment/create','CommentController@create');
 $router->post('/comment/delete','CommentController@delete');

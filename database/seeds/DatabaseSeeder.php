@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VideoSeeder::class);
         $this->call(ResourceSeeder::class);
         $this->call(CommentSeeder::class);
-        // $this->call(DanmakuSeeder::class);
+        $this->call(DanmakuSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(AnimeTagSeeder::class);
     }

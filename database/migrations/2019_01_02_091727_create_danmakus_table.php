@@ -18,8 +18,9 @@ class CreateDanmakusTable extends Migration
             $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('video_id')->index();
             $table->string('color');
-            $table->string('other');
-            $table->timestamp('start_time');
+            $table->string('type');
+            $table->string('text');
+            $table->float('time');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
