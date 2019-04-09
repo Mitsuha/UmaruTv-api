@@ -35,4 +35,14 @@ class DanmakuController extends Controller
             'data'=>$result
         ];
     }
+
+    public function create(Request $request)
+    {
+        $data = array_merge($request->toArray(), [
+            'user_id' =>auth()->id(),
+            'video_id'=>$requset->input('id')
+        ]);
+
+        return Danmaku::create($data);
+    }
 }
