@@ -19,7 +19,7 @@ class CreateVideosTable extends Migration
             $table->unsignedInteger('ranking')->default(1)->index()->comment('排序');
             $table->string('name');
             $table->string('info')->comment('每个视频可能有个小简介');
-            $table->unsignedInteger('coin')->comment('硬币');
+            $table->unsignedInteger('coin')->comment('硬币')->default(0);
             $table->timestamps();
 
             $table->foreign('anime_id')->references('id')->on('animes')->onDelete('cascade');
