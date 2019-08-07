@@ -102,4 +102,12 @@ class AnimeController extends Controller
         }
         return Tag::all();
     }
+
+    public function search(Request $request)
+    {
+        $name = $request->input('name');
+        if ($name){
+            return Anime::where('name','like',"%$name%")->limit(10)->get();
+        }
+    }
 }

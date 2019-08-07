@@ -34,6 +34,7 @@ $router->get('/user/{id}/info',['middleware'=>'auth:api','uses'=>'UserController
 $router->get('/animes/','AnimeController@index');
 $router->get('/animes/timeline','AnimeController@timeline');
 $router->get('/animes/recently-updated','AnimeController@recentlyUpdated');
+$router->get('/animes/search','AnimeController@search');
 
 $router->get('/animes/{id}/info','AnimeController@show');
 $router->get('/animes/{id}/video','AnimeController@video');

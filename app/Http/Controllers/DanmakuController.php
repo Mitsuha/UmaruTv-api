@@ -39,8 +39,8 @@ class DanmakuController extends Controller
     public function create(Request $request)
     {
         $data = array_merge($request->toArray(), [
-            'user_id' =>auth()->id(),
-            'video_id'=>$requset->input('id')
+            'user_id' =>1,
+            'video_id'=>$request->input('id')
         ]);
 
         return Danmaku::create($data);
