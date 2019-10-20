@@ -39,7 +39,7 @@ class AnimeController extends Controller
             });
         }
 
-        return $anime->paginate($request->input('paginate')); 
+        return $anime->orderBy('id','desc')->paginate($request->input('paginate'));
     }
 
     public function show(Request $request, $id)

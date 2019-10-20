@@ -19,7 +19,7 @@ class CreateResourcesTable extends Migration
             $table->string('resource');
             $table->string('type');
             $table->unsignedInteger('resolution')->comment('清晰度');
-            $table->unsignedInteger('ranking')->comment('排序');
+            $table->unsignedInteger('ranking')->nullable()->comment('排序');
             $table->timestamps();
 
             $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
