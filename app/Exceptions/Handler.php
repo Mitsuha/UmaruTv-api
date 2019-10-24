@@ -2,31 +2,28 @@
 
 namespace App\Exceptions;
 
-use Log;
 use Exception;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
     /**
-     * A list of the exception types that should not be reported.
+     * A list of the exception types that are not reported.
      *
      * @var array
      */
     protected $dontReport = [
-        AuthorizationException::class,
-        HttpException::class,
-        // ModelNotFoundException::class,
-        ValidationException::class,
+        //
     ];
 
-    protected $captureException = [
-        HttpException::class,
-        ModelNotFoundException::class,
+    /**
+     * A list of the inputs that are never flashed for validation exceptions.
+     *
+     * @var array
+     */
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
     ];
 
     /**
@@ -51,62 +48,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($this->captureException($exception)){
-            return $this->returnJsonError($exception);
-        }
-
         return parent::render($request, $exception);
-    }
-
-    public function returnJsonError($exception)
-    {
-        if ($exception instanceof ModelNotFoundException){
-            return $this->ModelNotFoundToJson($exception);
-        }
-
-        try{
-            $code = $exception->getCode();
-            $message = $exception->getMessage();
-            if (method_exists($exception, 'getStatusCode')) {
-                $response_code = $exception->getStatusCode();
-            }else{
-                $response_code = $this->getDefaultStatusCode();
-            }
-        }catch(Exception $e){
-            Log::error($e->getMessage());
-        }
-        if (empty($message)) {
-            $message = class_basename($exception);
-        }
-
-        return response([
-            'code'=>$code,
-            'message'=>$message,
-        ],$response_code);
-    }
-
-    public function getDefaultStatusCode()
-    {
-        return 404;
-    }
-
-    public function ModelNotFoundToJson($exception)
-    {
-        $model = class_basename($exception->getModel());
-        $ids = implode($exception->getIds(), ',');
-        return response([
-            'code'=>$exception->getCode(),
-            'message'=>'['.$model.'] 中没有记录 ['.$ids.']',
-        ],404);
-    }
-
-    public function captureException($exception)
-    {
-        foreach ($this->captureException as $exc) {
-            if ($exception instanceof $exc) {
-                return true;
-            }
-        }
-        return false;
     }
 }
