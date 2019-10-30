@@ -17,9 +17,9 @@
 <script>
 	var dplayer = new DPlayer({
 		container: document.getElementById('dplayer'),
-		screenshot: true,
+		// screenshot: true,
 		theme:'#b91212',
-		preload: 'metadata',
+		preload: 'none',
 		video: {
 		    url: 'https://youku.cdn1-letv.com/20180602/11818_e492583b/index.m3u8',
 		    pic: 'https://pic.china-gif.com/pic/upload/vod/2018-10/15387952062.jpg',
@@ -27,7 +27,7 @@
 		},
 		danmaku: {
 		    id: '1',
-		    api: '/animes/video/danmaku'
+		    api: '/animes/video/danmaku/'
 		}
 
 	});

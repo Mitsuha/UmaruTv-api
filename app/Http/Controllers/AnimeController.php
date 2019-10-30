@@ -29,6 +29,9 @@ class AnimeController extends Controller
 
     public function index(Request $request)
     {
+        $request->validate([
+            'name'=>'required'
+        ]);
         $anime = new Anime();
 
         if ($request->has('tag')) {

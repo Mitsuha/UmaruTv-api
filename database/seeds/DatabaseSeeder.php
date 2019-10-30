@@ -11,13 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserSeeder::class);
-        $this->call(AnimeSeeder::class);
-        $this->call(VideoSeeder::class);
-        $this->call(ResourceSeeder::class);
-        $this->call(CommentSeeder::class);
+//        $this->call(UserSeeder::class);
+//        $this->call(AnimeSeeder::class);
+//        $this->call(VideoSeeder::class);
+//        $this->call(ResourceSeeder::class);
+//        $this->call(CommentSeeder::class);
         $this->call(DanmakuSeeder::class);
-        $this->call(TagSeeder::class);
-        $this->call(AnimeTagSeeder::class);
+//        $this->call(TagSeeder::class);
+//        $this->call(AnimeTagSeeder::class);
     }
 }
