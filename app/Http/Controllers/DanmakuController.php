@@ -40,7 +40,7 @@ class DanmakuController extends Controller
     {
         // dd($request);
         $data = array_merge($request->toArray(), [
-            'user_id' =>0,
+            'user_id' =>auth()->id(),
             'video_id'=>$request->input('id'),
         ]);
         // return $data;

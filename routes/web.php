@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
 Auth::routes();
 
 Route::get('/', function (Request $request) {
@@ -24,13 +25,13 @@ Route::get('/', function (Request $request) {
 });
 
 
-Route::group(['prefix'=>'auth','namespace'=>'Auth'],function(){
-	Route::post('login', 'AuthController@login');
-	Route::post('logout', 'AuthController@logout');
-	Route::post('refresh', 'AuthController@refresh');
-	Route::post('register','RegisterController@register');
-});
- 
+//Route::group(['prefix'=>'auth','namespace'=>'Auth'],function(){
+//	Route::post('login', 'LoginController@login');
+//	Route::post('logout', 'AuthController@logout');
+//	Route::post('refresh', 'AuthController@refresh');
+//	Route::post('register','RegisterController@register');
+//});
+
 Route::get('/user/me',['middleware'=>'auth:api','uses'=>'UserController@self']);
 Route::get('/user/{id}/info',['middleware'=>'auth:api','uses'=>'UserController@show']);
 Route::get('/animes/','AnimeController@index');
@@ -45,9 +46,8 @@ Route::get('/animes/tags/index','AnimeController@index');
 Route::get('/animes/video/{id}/resource','VideoController@resource');
 Route::get('/animes/video/{id}/comment','CommentController@show');
 Route::get('/animes/video/danmaku/v3/','DanmakuController@index');
-Route::post('/animes/video/danmaku/v3/','DanmakuController@create');
+Route::match(['post','options'],'/animes/video/danmaku/v3/','DanmakuController@create');
 Route::post('/comment/create','CommentController@create');
 Route::post('/comment/delete','CommentController@delete');
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
