@@ -5,3 +5,5 @@ Homestead.yaml
 .env
 index.sublime-project
 index.sublime-workspace
+/bootstrap/cache/
+/storage/framework/*
