@@ -14,10 +14,6 @@ class AnimeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        // parent::__construct();
-    }
 
     public function split($str)
     {
@@ -29,9 +25,6 @@ class AnimeController extends Controller
 
     public function index(Request $request)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
         $anime = new Anime();
 
         if ($request->has('tag')) {

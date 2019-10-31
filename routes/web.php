@@ -46,7 +46,8 @@ Route::get('/animes/tags/index','AnimeController@index');
 Route::get('/animes/video/{id}/resource','VideoController@resource');
 Route::get('/animes/video/{id}/comment','CommentController@show');
 Route::get('/animes/video/danmaku/v3/','DanmakuController@index');
-Route::match(['post','options'],'/animes/video/danmaku/v3/','DanmakuController@create');
+Route::post('/animes/video/danmaku/v3/','DanmakuController@create');
+Route::options('/animes/video/danmaku/v3/','DanmakuController@index');
 Route::post('/comment/create','CommentController@create');
 Route::post('/comment/delete','CommentController@delete');
 
