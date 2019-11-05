@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Models\User;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -21,19 +20,10 @@ class UserController extends Controller
 
     public function show($id){
 
-        return array_except(User::findOrFail($id), [
-            'bbs_id',
-            'password',
-            'remember_token',
-            'updated_at'
-        ]);
+        return User::findOrFail($id);
     }
 
     public function self(){
-
-        return array_except(Auth::user(), [
-            'password',
-            'remember_token'
-        ]);
+        return Auth::user();
     }
 }
