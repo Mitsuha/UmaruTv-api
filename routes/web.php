@@ -32,8 +32,8 @@ Route::get('/', function (Request $request) {
 //	Route::post('register','RegisterController@register');
 //});
 
-Route::get('/user/me',['middleware'=>'auth:api','uses'=>'UserController@self']);
-Route::get('/user/{id}/info',['middleware'=>'auth:api','uses'=>'UserController@show']);
+Route::get('/user/me',['middleware'=>'auth','uses'=>'UserController@self']);
+Route::get('/user/{id}/info',['middleware'=>'auth','uses'=>'UserController@show']);
 Route::get('/animes/','AnimeController@index');
 Route::get('/animes/timeline','AnimeController@timeline');
 Route::get('/animes/recently-updated','AnimeController@recentlyUpdated');
