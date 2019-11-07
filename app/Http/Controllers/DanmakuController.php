@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Danmaku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DanmakuController extends Controller
 {
@@ -39,7 +40,7 @@ class DanmakuController extends Controller
     public function create(Request $request)
     {
         $data = array_merge($request->toArray(), [
-            'user_id' =>auth()->id(),
+            'user_id' =>Auth::id(),
             'video_id'=>$request->input('id'),
         ]);
         return Danmaku::create($data);
