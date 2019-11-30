@@ -32,8 +32,8 @@ Route::get('/', function (Request $request) {
 //	Route::post('register','RegisterController@register');
 //});
 
-Route::get('/user/me',['middleware'=>'auth','uses'=>'UserController@self']);
-Route::get('/user/{id}/info',['middleware'=>'auth','uses'=>'UserController@show']);
+
+Route::get('/user/{id}/info','UserController@show');
 Route::get('/animes/','AnimeController@index');
 Route::get('/animes/timeline','AnimeController@timeline');
 Route::get('/animes/recently-updated','AnimeController@recentlyUpdated');
@@ -46,9 +46,13 @@ Route::get('/animes/tags/index','AnimeController@index');
 Route::get('/animes/video/{id}/resource','VideoController@resource');
 Route::get('/animes/video/{id}/comment','CommentController@show');
 Route::get('/animes/video/danmaku/v3/','DanmakuController@index');
-Route::post('/animes/video/danmaku/v3/','DanmakuController@create');
-Route::options('/animes/video/danmaku/v3/','DanmakuController@index');
-Route::post('/comment/create','CommentController@create');
-Route::post('/comment/delete','CommentController@delete');
+//Route::options('/animes/video/danmaku/v3/','DanmakuController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/user/me',['middleware'=>'auth','uses'=>'UserController@self']);
+    Route::post('/comment/create','CommentController@create');
+    Route::post('/comment/delete','CommentController@delete');
+    Route::post('/animes/video/danmaku/v3/','DanmakuController@create');
+});
