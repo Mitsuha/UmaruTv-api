@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use \Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Validation\ValidationException;
 
@@ -42,7 +43,8 @@ class LoginController extends Controller
     public function sendLoginResponse(Request $request){
         return [
             'code'=>200,
-            'message'=>'登录成功'
+            'message'=>'登录成功',
+            'date'=>Auth::user()->toArray()
         ];
     }
 
