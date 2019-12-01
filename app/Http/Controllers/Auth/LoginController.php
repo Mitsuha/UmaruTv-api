@@ -44,7 +44,7 @@ class LoginController extends Controller
         return [
             'code'=>200,
             'message'=>'登录成功',
-            'date'=>Auth::user()->toArray()
+            'data'=>Auth::user()->toArray()
         ];
     }
 
