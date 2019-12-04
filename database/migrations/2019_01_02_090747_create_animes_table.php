@@ -17,12 +17,12 @@ class CreateAnimesTable extends Migration
             $table->increments('id')->unsigned();
             $table->string('name')->comment('名称');
             $table->string('cover')->comment('封面');
-            $table->unsignedInteger('watch')->nullable()->default(0)->comment('观看人数');
-            $table->unsignedInteger('collection')->nullable()->default(0)->comment('收藏订阅追番');
-            $table->unsignedInteger('danmaku')->nullable()->default(0)->comment('弹幕');
+            $table->unsignedInteger('watch')->default(0)->comment('观看人数');
+            $table->unsignedInteger('collection')->default(0)->comment('收藏订阅追番');
+            $table->unsignedInteger('danmaku')->default(0)->comment('弹幕');
             $table->text('introduction')->comment('简介');
-            $table->date('release_time')->comment('发行时间');
-            $table->unsignedInteger('episodes')->nullable()->default(0)->comment('有几集');
+            $table->date('release_time')->nullable()->comment('发行时间');
+            $table->unsignedInteger('episodes')->default(0)->comment('有几集');
             $table->string('status',10);
             $table->unsignedInteger('update_time')->default(0)->comment('番剧更新时间');
             $table->unsignedInteger('season_id')->comment('多季情况下是第一季的 id')->default(0)->index();

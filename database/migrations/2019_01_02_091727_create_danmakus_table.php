@@ -16,7 +16,7 @@ class CreateDanmakusTable extends Migration
         Schema::create('danmakus', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->unsignedInteger('video_id')->index();
+            $table->unsignedInteger('episode_id')->index();
             $table->string('color');
             $table->string('type');
             $table->string('text');
@@ -24,7 +24,7 @@ class CreateDanmakusTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
+            $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
         });
     }
 
