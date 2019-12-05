@@ -33,6 +33,7 @@ Route::get('/', function (Request $request) {
 //});
 
 
+Route::get('/carousel/{name}','IndexController@carousel');
 Route::get('/user/{id}/info','UserController@show');
 Route::get('/animes/','AnimeController@index');
 Route::get('/animes/timeline','AnimeController@timeline');
