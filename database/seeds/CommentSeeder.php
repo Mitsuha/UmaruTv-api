@@ -12,7 +12,7 @@ class CommentSeeder extends Seeder
     public function run()
     {
     	$user = App\Models\User::all()->pluck('id')->toArray();
-    	$video = App\Models\video::all()->pluck('id')->toArray();
+    	$video = App\Models\Episodes::all()->pluck('id')->toArray();
     	$faker = app(Faker\Generator::class);
 
         $comments = factory(App\Models\Comment::class,5000)->make()->each(function($comment) use ($faker, $user, $video){

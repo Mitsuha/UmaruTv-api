@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Anime extends Model
 {
-    
-    public function video()
+
+    public function episode()
     {
-    	return $this->hasMany(Video::class,'anime_id');
+    	return $this->hasMany(Episodes::class,'anime_id');
     }
 
     public function tags()
@@ -17,10 +17,10 @@ class Anime extends Model
         return $this->belongsToMany(Tag::class,'anime_tags');
     }
 
-    public function scopeWithVideo($query, bool $with)
+    public function scopeWithEpisode($query, bool $with)
     {
     	if ($with) {
-    		return $query->with('video');
+    		return $query->with('episode');
     	}else{
     		return $query;
     	}

@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Models\Video::class, function (Faker $faker) {
+$factory->define(App\Models\Episodes::class, function (Faker $faker) {
 	$time = $faker->dateTimeThisYear;
     return [
         'name'=>$faker->word,

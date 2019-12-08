@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anime;
 use App\Models\Tag;
-use App\Models\Video;
+use App\Models\Episodes;
 use Illuminate\Http\Request;
 
 class AnimeController extends Controller
@@ -39,20 +39,20 @@ class AnimeController extends Controller
     }
 
     public function show(Request $request, $id)
-    {   
-        $with = $request->has('withVideo') ? ['video','tags'] : ['tags'];
+    {
+        $with = $request->has('withEpisode') ? ['episode','tags'] : ['tags'];
 
         return array_except(Anime::with($with)->findOrFail($id),['id']);
     }
 
-    public function video($id, Request $request)
+    public function episode($id, Request $request)
     {
         $with = $request->input('with') === 'resource' ? 'resource' : [];
-    
-        $videos = video::with($with)->where('anime_id',$id)->get();
-        return $videos;
+
+        $episodes = Episodes::with($with)->where('anime_id',$id)->get();
+        return $episodes;
     }
- 
+
     public function timeline()
     {
         $animes = Anime::where('status','updating')->orWhere('status','stop')->get();
@@ -69,10 +69,10 @@ class AnimeController extends Controller
 
     public function recentlyUpdated()
     {
-        $video = Video::select('anime_id')->orderBy('created_at','desc')->limit(20)->get()->toArray();
-        $video = array_slice(array_unique(array_column($video, 'anime_id')),0,10);
+        $episodes = Episodes::select('anime_id')->orderBy('created_at','desc')->limit(20)->get()->toArray();
+        $episodes = array_slice(array_unique(array_column($episodes, 'anime_id')),0,10);
 
-        $anime = Anime::select(['id','name','episodes'])->whereIn('id',$video)->get();
+        $anime = Anime::select(['id','name','episodes'])->whereIn('id',$episodes)->get();
         return $anime;
     }
 

@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Danmaku;
-use App\Models\Video;
+use App\Models\Episodes;
 use Illuminate\Database\Seeder;
 
 class DanmakuSeeder extends Seeder
@@ -14,7 +14,7 @@ class DanmakuSeeder extends Seeder
     public function run()
     {
         $user_id = App\Models\User::select('id')->get()->pluck('id')->toArray();
-        $video_id = Video::select('id')->get()->pluck('id')->toArray();
+        $video_id = Episodes::select('id')->get()->pluck('id')->toArray();
 
         $faker = app(Faker\Generator::class);
         foreach ($video_id as $id) {
@@ -22,7 +22,7 @@ class DanmakuSeeder extends Seeder
 	        {
 	        	$danmaku->user_id = $faker->randomElement($user_id);
 	        	$danmaku->video_id = $id;
-	        })->toArray());        	
+	        })->toArray());
         }
 
     }

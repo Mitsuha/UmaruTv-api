@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Video;
+use App\Models\Episodes;
 use Illuminate\Http\Request;
 
-class VideoController extends Controller
+class EpisodeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,12 +19,12 @@ class VideoController extends Controller
 
     public function resource($id, Request $request)
     {
-        $video = Video::with('resource')->find($id);
+        $episode = Episodes::with('resource')->find($id);
 
         if ($request->input('info')==true) {
-            return $video;
+            return $episode;
         }
 
-        return $video->resource;
+        return $episode->resource;
     }
 }

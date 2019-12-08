@@ -20,7 +20,7 @@ class DanmakuController extends Controller
 
     public function index(Request $request)
     {
-        $danmaku =  Danmaku::where('video_id',$request->input('id'))->get();
+        $danmaku =  Danmaku::where('episode_id',$request->input('id'))->get();
         $result = [];
         foreach ($danmaku as $i) {
             $result[] = [
@@ -41,7 +41,7 @@ class DanmakuController extends Controller
     {
         $data = array_merge($request->toArray(), [
             'user_id' =>Auth::id(),
-            'video_id'=>$request->input('id'),
+            'episode_id'=>$request->input('id'),
         ]);
         return Danmaku::create($data);
     }
