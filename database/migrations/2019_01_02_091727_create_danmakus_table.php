@@ -19,7 +19,7 @@ class CreateDanmakusTable extends Migration
             $table->unsignedInteger('episode_id')->index();
             $table->string('color');
             $table->string('type');
-            $table->string('text');
+            $table->string('text',255);
             $table->float('time');
             $table->timestamps();
 

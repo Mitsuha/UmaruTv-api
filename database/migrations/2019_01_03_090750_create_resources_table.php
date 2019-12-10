@@ -16,7 +16,7 @@ class CreateResourcesTable extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('episode_id')->index();
-            $table->string('resource');
+            $table->string('resource',255);
             $table->string('type');
             $table->unsignedInteger('resolution')->comment('清晰度');
             $table->unsignedInteger('ranking')->nullable()->comment('排序');

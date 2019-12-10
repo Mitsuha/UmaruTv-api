@@ -16,7 +16,7 @@ class CreateAnimesTable extends Migration
         Schema::create('animes', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name')->comment('名称');
-            $table->string('cover')->comment('封面');
+            $table->string('cover',255)->comment('封面');
             $table->unsignedInteger('watch')->default(0)->comment('观看人数');
             $table->unsignedInteger('collection')->default(0)->comment('收藏订阅追番');
             $table->unsignedInteger('danmaku')->default(0)->comment('弹幕');
