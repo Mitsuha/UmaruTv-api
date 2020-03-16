@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -60,7 +60,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
@@ -68,6 +68,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'sex' => 0,
+            'avatar' => setting('default.user.avatar'),
+            'cover' => setting('default.user.cover'),
         ]);
     }
 
@@ -86,8 +89,8 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         return [
-            'code'=>200,
-            'message'=>'register success',
+            'status'=>'success',
+            'message'=>'注册成功',
             'user'=>[
                 'name'=>$user->name,
                 'email'=>$user->email,

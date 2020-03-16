@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     public function sendLoginResponse(Request $request){
         return [
-            'code'=>200,
+            'status'=>'success',
             'message'=>'登录成功',
             'data'=>Auth::user()->toArray()
         ];
@@ -55,7 +55,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         return [
-            'code'=>200,
+            'status'=>'success',
             'message'=>'登出成功'
         ];
     }

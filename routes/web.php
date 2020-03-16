@@ -52,7 +52,10 @@ Route::get('/animes/episode/danmaku/v3/','DanmakuController@index');
 
 Route::middleware('auth')->group(function (){
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/user/me',['middleware'=>'auth','uses'=>'UserController@self']);
+    Route::get('/user/me','UserController@self');
+    Route::post('/user', 'UserController@update');
+    Route::post('/user/modifyAvatar', 'UserController@modifyAvatar');
+    Route::post('/user/modifyCover', 'UserController@modifyCover');
     Route::post('/comment/create','CommentController@create');
     Route::post('/comment/delete','CommentController@delete');
     Route::post('/animes/episode/danmaku/v3/','DanmakuController@create');
