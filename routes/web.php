@@ -45,8 +45,16 @@ Route::get('/animes/{id}/episode','AnimeController@episode');
 Route::get('/animes/tags','TagController@tags');
 Route::get('/animes/tags/index','AnimeController@index');
 Route::get('/animes/episode/{id}/resource','EpisodeController@resource');
-Route::get('/animes/episode/{id}/comment','CommentController@show');
+
+Route::get('/animes/episode/{id}/comment','EpisodeController@comment');
+Route::post('/animes/episode/{id}/comment', 'CommentController@store');
+Route::get('/animes/episode/comment/{id}', 'CommentController@show');
+Route::delete('/animes/episode/comment/{id}', 'CommentController@destroy');
+
+
 Route::get('/animes/episode/danmaku/v3/','DanmakuController@index');
+
+
 //Route::options('/animes/episode/danmaku/v3/','DanmakuController@index');
 
 

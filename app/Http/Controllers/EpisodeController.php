@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Episodes;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,9 @@ class EpisodeController extends Controller
         }
 
         return $episode->resource;
+    }
+
+    public function comment($id){
+        return Comment::whereEpisode($id)->paginate();
     }
 }

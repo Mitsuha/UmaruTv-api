@@ -12,7 +12,7 @@ class AnimeController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return array
      */
 
     public function split($str)

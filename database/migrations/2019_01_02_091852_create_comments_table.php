@@ -17,13 +17,14 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('episode_id')->index();
+            $table->unsignedInteger('reply_id')->nullable()->index();
             $table->text('content');
-            $table->unsignedInteger('like');
+            $table->unsignedInteger('like')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
-
+            $table->foreign('reply_id')->references('id')->on('comments')->onDelete('cascade');
         });
     }
 

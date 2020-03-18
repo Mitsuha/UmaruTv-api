@@ -12,7 +12,7 @@ class AnimeSeeder extends Seeder
     public function run()
     {
     	$faker = app(Faker\Generator::class);
-    	$animes = factory(App\Models\Anime::class,20)->create()->each(function($anime){
+    	$animes = factory(App\Models\Anime::class,5)->create()->each(function($anime){
             $anime->season_id = $anime->id;
             $anime->save();
         });
