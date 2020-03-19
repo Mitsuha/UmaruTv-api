@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Request;
 
 class IndexController extends Controller
 {
-    public function carousel($name){
-        return Advertising::where('name',$name)->get();
+    public function carousel(){
+        return Advertising::where('name', 'carousel')->get();
     }
 }
