@@ -16,7 +16,7 @@ class User extends Authenticatable{
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'cover'
+        'name', 'email', 'password', 'avatar', 'cover', 'status', 'ban_time', 'ban_reason'
     ];
 
     /**
@@ -36,5 +36,17 @@ class User extends Authenticatable{
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $status_field = [
+        'normal', 'ban', 'ban_forever'
+    ];
+
+    public function getStatusAttribute($value){
+        return $this->status_field[$value];
+    }
+
+    public function setStatusAttribute($value){
+        return array_search($value, $this->status_field);
+    }
 
 }

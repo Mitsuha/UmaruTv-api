@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->string('cover');
             $table->string('sign')->nullable();
+            $table->unsignedTinyInteger('status')->default(0);
+            $table->unsignedInteger('ban_time')->nullable();
+            $table->string('ban_reason')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
