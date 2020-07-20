@@ -74,27 +74,27 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return [
-            'status'=>'success',
-            'message'=>'注册成功',
-            'user'=>[
-                'name'=>$user->name,
-                'email'=>$user->email,
-            ]
-        ];
-    }
+//    /**
+//     * Handle a registration request for the application.
+//     *
+//     * @param  \Illuminate\Http\Request  $request
+//     * @return array
+//     */
+//    public function register(Request $request)
+//    {
+//        $this->validator($request->all())->validate();
+//
+//        event(new Registered($user = $this->create($request->all())));
+//
+//        $this->guard()->login($user);
+//
+//        return [
+//            'status'=>'success',
+//            'message'=>'注册成功',
+//            'user'=>[
+//                'name'=>$user->name,
+//                'email'=>$user->email,
+//            ]
+//        ];
+//    }
 }

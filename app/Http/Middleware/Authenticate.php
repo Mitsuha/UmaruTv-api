@@ -28,17 +28,14 @@ class Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param \Illuminate\Http\Request $request
+     * @param array $guards
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, array $guards)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response(['code'=>401, 'message'=>'Unauthorized.'], 401);
-        }
-
-        return $next($request);
+//        if ($this->auth->guard($guard)->guest()) {
+//            return response(['code'=>401, 'message'=>'Unauthorized.'], 401);
+//        }
     }
 }
