@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+//use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,16 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        switch (config('app.env')){
-            case 'local':
-                $this->localSeed();break;
-            case 'production':
-                $this->productionSeed();break;
-        }
-        $this->call(SettingSeeder::class);
-    }
-
-    public function localSeed(){
         $this->call(UserSeeder::class);
         $this->call(AnimeSeeder::class);
         $this->call(EpisodeSeeder::class);
@@ -29,9 +22,10 @@ class DatabaseSeeder extends Seeder
 //        $this->call(DanmakuSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(AnimeTagSeeder::class);
-    }
 
-    public function productionSeed(){
-
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }

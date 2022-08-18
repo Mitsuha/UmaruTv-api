@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Anime;
+use App\Models\Episodes;
 use Illuminate\Database\Seeder;
 
 class EpisodeSeeder extends Seeder
@@ -11,15 +15,14 @@ class EpisodeSeeder extends Seeder
      */
     public function run()
     {
-    	$animes = App\Models\Anime::all()->pluck('id')->toArray();
-    	$faker = app(Faker\Generator::class);
+    	$animes = Anime::all()->pluck('id')->toArray();
 
         foreach($animes as $anime){
-            $videos = factory(App\Models\Episodes::class,5)->make()->each(function($video) use ($faker,$anime){
+            $videos = Episodes::factory(5)->make()->each(function($video) use ($anime){
                 $video->anime_id = $anime;
             });
 
-            App\Models\Episodes::insert($videos->toArray());
+            Episodes::query()->insert($videos->toArray());
         }
     }
 }

@@ -1,5 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Anime;
+use App\Models\AnimeTag;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class AnimeTagSeeder extends Seeder
@@ -11,18 +16,16 @@ class AnimeTagSeeder extends Seeder
      */
     public function run()
     {
-    	$faker = app(Faker\Generator::class);
-
-        $animes = App\Models\Anime::select('id')->get()->pluck('id')->toArray();
-        $tags = App\Models\Tag::select('id')->get()->pluck('id')->toArray();
+        $animes = Anime::query()->select('id')->get()->pluck('id')->toArray();
+        $tags = Tag::query()->select('id')->get()->pluck('id')->toArray();
 
         foreach ($animes as $aid) {
-            $anime_tags = factory(App\Models\AnimeTag::class,4)->make()->each(function($ats) use ($aid, $tags, $faker){
+            $anime_tags = AnimeTag::factory(4)->make()->each(function($ats) use ($aid, $tags){
                 $ats->anime_id = $aid;
-                $ats->tag_id = $faker->randomElement($tags);
+                $ats->tag_id = fake()->randomElement($tags);
             });
 
-            App\Models\AnimeTag::insert($anime_tags->toArray());
+            AnimeTag::query()->insert($anime_tags->toArray());
         }
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
@@ -19,20 +22,20 @@ class TagSeeder extends Seeder
     	];
 
     	$tags = array_merge(
-    		factory(App\Models\Tag::class,20)->make()->each(function ($tag){
+    		Tag::factory(20)->make()->each(function ($tag){
     			$tag->type = 'style';
     		})->toArray(),
-    		factory(App\Models\Tag::class,4)->make()->each(function ($tag){
+    		Tag::factory(4)->make()->each(function ($tag){
     			$tag->type = 'local';
     		})->toArray(),
-    		factory(App\Models\Tag::class,3)->make()->each(function($tag){
+    		Tag::factory(3)->make()->each(function($tag){
     			$tag->type = 'type';
     		})->toArray(),
-    		factory(App\Models\Tag::class,4)->make()->each(function($tag){
+    		Tag::factory(4)->make()->each(function($tag){
     			$tag->type = 'season';
     		})->toArray()
     	);
 
-    	App\Models\Tag::insert($tags);
+    	Tag::query()->insert($tags);
     }
 }

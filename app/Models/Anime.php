@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Anime extends Model
 {
+    use HasFactory;
+
     public function episode(): HasMany
     {
         return $this->hasMany(Episodes::class, 'anime_id');
