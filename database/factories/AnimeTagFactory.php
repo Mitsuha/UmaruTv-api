@@ -1,11 +1,25 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Models\AnimeTag::class, function (Faker $faker) {
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-    return [
-        // 'created_at'=>$time,
-        // 'updated_at'=>$time
-    ];
-});
+/**
+ * @extends Factory
+ */
+class AnimeTagFactory extends Factory
+{
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            // 'created_at'=>$time,
+            // 'updated_at'=>$time
+        ];
+    }
+}

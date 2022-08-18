@@ -1,13 +1,28 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Models\Comment::class, function (Faker $faker) {
-	$time = $faker->dateTimeThisYear;
-    return [
-        'content'=>$faker->text,
-        'like'=>$faker->randomNumber(),
-        'created_at'=>$time,
-        'updated_at'=>$time,
-    ];
-});
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory
+ */
+class CommentFactory extends Factory
+{
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $time = $this->faker->dateTimeThisYear;
+        return [
+            'content' => $this->faker->text,
+            'like' => $this->faker->randomNumber(),
+            'created_at' => $time,
+            'updated_at' => $time,
+        ];
+    }
+}

@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable{
 
-    use Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -37,7 +39,7 @@ class User extends Authenticatable{
         'email_verified_at' => 'datetime',
     ];
 
-    protected $status_field = [
+    protected array $status_field = [
         'normal', 'ban', 'ban_forever'
     ];
 
@@ -45,7 +47,8 @@ class User extends Authenticatable{
         return $this->status_field[$value];
     }
 
-    public function setStatusAttribute($value){
+    public function setStatusAttribute($value): bool|int|string
+    {
         return array_search($value, $this->status_field);
     }
 

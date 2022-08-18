@@ -1,22 +1,36 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$type = [
-	'style',
-	'status',
-	'local',
-	'type',
-	'season'
-];
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(App\Models\Tag::class, function (Faker $faker) use ($type) {
-
-	$time = $faker->dateTimeThisYear;
-    return [
-        'name'=> $faker->word,
-        'type'=> $faker->randomElement($type),
-        'created_at'=>$time,
-        'updated_at'=>$time
+/**
+ * @extends Factory
+ */
+class TagFactory extends Factory
+{
+    static array $type = [
+        'style',
+        'status',
+        'local',
+        'type',
+        'season'
     ];
-});
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $time = $this->faker->dateTimeThisYear;
+        return [
+            'name' => $this->faker->word,
+            'type' => $this->faker->randomElement(static::$type),
+            'created_at' => $time,
+            'updated_at' => $time
+        ];
+    }
+}
+

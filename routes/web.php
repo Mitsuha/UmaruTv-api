@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/', function (Request $request) {
 	$anime = App\Models\Anime::where('status','end')->get();

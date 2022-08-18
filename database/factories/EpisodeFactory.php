@@ -1,14 +1,30 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Models\Episodes::class, function (Faker $faker) {
-	$time = $faker->dateTimeThisYear;
-    return [
-        'name'=>$faker->word,
-        'info'=>$faker->words(2,true),
-        'coin'=>$faker->randomNumber(),
-        'created_at'=>$time,
-        'updated_at'=>$time
-    ];
-});
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory
+ */
+class EpisodeFactory extends Factory
+{
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $time = $this->faker->dateTimeThisYear;
+        return [
+            'name' => $this->faker->word,
+            'info' => $this->faker->words(2, true),
+            'coin' => $this->faker->randomNumber(),
+            'created_at' => $time,
+            'updated_at' => $time
+        ];
+    }
+}
+
